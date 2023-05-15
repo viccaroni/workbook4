@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Menu</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css"
+    />
+  </head>
+  <body>
+    <main>
+      <h1>Vic's Food Shop!</h1>
+      <select
+        name="menuCategories"
+        id="menuCategories"
+        onchange="loadMenuItems();"
+      >
+        <option value="">Please choose what you'd like...</option>
+        <option value="drinks">Drinks</option>
+        <option value="entrees">Entrees</option>
+        <option value="desserts">Desserts</option>
+      </select>
+      <h3>Available:</h3>
+      <select name="" id="menuItems" size="6"></select>
+
+      <script>
+        "use strict";
+
+        let menu = {
+          drinks: ["Water", "Tea", "Sweet Tea", "Coke", "Dr. Pepper", "Sprite"],
+          entrees: [
+            "Hamburger w/ Fries",
+            "Grilled Cheese w/ Tater Tots",
+            "Grilled Chicken w/ Veggies",
+            "Chicken Fried Steak w/ Mashed Potatoes",
+            "Fried Shrimp w/ Coleslaw",
+            "Veggie Plate",
+          ],
+          desserts: ["Cheesecake", "Chocolate Cake", "Snickerdoodle Cookie"],
+        };
+
+        //get my element for my menu categories
+        let menuCategoryList = document.querySelector("select#menuCategories");
+        let menuItemsList = document.querySelector("select#menuItems");
+
+        function loadMenuItems() {
+          menuItemsList.options.length = 0
+          let category = menuCategoryList.value;
+          console.log(category);
+          if (category == "drinks") {
+            
+            for (const item of menu.drinks) {
+              let drinkOption = document.createElement("option"); //inside the parenthesis is the acual element tag, so you can put any existing html element in
+              drinkOption.value = item;
+              drinkOption.textContent = item;
+              menuItemsList.appendChild(drinkOption);
+              // console.log(item);
+            }
+          } else if (category == "entrees") {
+            for (const item of menu.entrees) {
+              let entreeOption = document.createElement("option");
+              entreeOption.value = item;
+              entreeOption.textContent = item;
+              menuItemsList.appendChild(entreeOption);
+              // console.log(item);
+            }
+          } else if (category == "desserts") {
+            for (const item of menu.desserts) {
+              let dessertOption = document.createElement("option")
+              dessertOption.value = item;
+              dessertOption.textContent = item;
+              menuItemsList.appendChild(dessertOption)
+              // console.log(item);
+            }
+          } 
+        }
+      </script>
+    </main>
+  </body>
+</html>
